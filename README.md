@@ -21,7 +21,7 @@ Because the basic only converts letters, I have to check if the letter is a lett
 
 ## Caesars_Cipher-Advanced.py
 
-This program takes a message and a key as input and encrypts the message using the key. I use the ord() and chr() built-in functions to convert the letters to numbers and vice versa avoiding having to create a string of the alphabet. In this case, we do not care to keep the values of the alphabet (A-Z) or (a-z) so we just shift everything.
+This program takes a message and a key as input and encrypts the message using the key. In this case, we do not care to keep the values of the alphabet (A-Z) or (a-z) so we just shift everything within the specified unicode range.
 
 **Example:**
 
