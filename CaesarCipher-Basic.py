@@ -1,4 +1,4 @@
-#Ceasar's Cipher
+#Caesar's Cipher
 def encrypt(message, key):
     result = ""
     for letter in message:

@@ -1,4 +1,4 @@
-#Ceasar's Cipher-Advanced.py
+#Caesar's Cipher-Advanced.py
 def encrypt(message, key):
     result = ""
     for letter in message:
@@ -29,8 +29,6 @@ def key_req():
         key_req()    
 
 
-
-#Runs a while loop to continue asking for key if invalid.
 def main():
     message = input("Enter a message: ")
     key = key_req()
