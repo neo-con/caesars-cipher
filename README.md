@@ -1,4 +1,4 @@
-# Caesars_Cipher
+# Caesars-Cipher
 
 Includes two files. One basic and the other advanced (which only means that we shift everything; numbers, letters, spaces, symbols, etc..)
 
