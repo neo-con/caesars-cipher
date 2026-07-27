@@ -1,39 +1,55 @@
-# Caesars-Cipher
+# Caesar's Cipher
 
-This repository includes two implementations of the Caesar Cipher: one basic and one advanced. The basic version encrypts only alphabetic characters, while the advanced version shifts all characters, including numbers, letters, spaces, and symbols.
+A Python implementation of the Caesar cipher, one of the oldest known encryption
+techniques. Each letter in the message is shifted a fixed number of places
+through the alphabet — with a key of 3, `a` becomes `d` and `z` wraps around to
+`c`.
 
-## Caesars_Cipher-Basic.py
+Requires Python 3. No dependencies.
 
-This program encrypts and decrypts messages using a Caesar Cipher technique. It takes a message and a key as input. The key must be a number between 1 and 25. The encryption and decryption only affect alphabetic characters; all other characters (like spaces and punctuation) are not altered.
+```
+python Caesars_Cipher-Basic.py
+```
 
-**Features:**
-- Encrypts and decrypts messages using a shift key that the user provides.
-- Maintains non-alphabetic characters unchanged in the output.
-- Prompts the user to enter a valid key if the provided key is out of the acceptable range.
+## How it works
 
-**Example Usage:**
+Each character is checked to see whether it's a letter. If it is, it's anchored
+to `'A'` or `'a'` depending on its case, shifted by the key, and wrapped back
+into the 26-letter alphabet using modular arithmetic. This keeps uppercase
+uppercase and lowercase lowercase. Anything that isn't a letter — spaces,
+punctuation, digits — passes through unchanged, which is why word boundaries
+stay visible in the output.
 
-* Enter a message: My name is Neo.
-* Enter a key: 12 
-* Encrypted message: Yk zmyq ue Zqa.
-* Decrypted message: My name is Neo.
+Decryption reuses the same routine with a negated key. Python's `%` operator
+returns a non-negative result for a positive modulus, so shifting backwards
+wraps correctly without any special handling.
 
-## Caesars_Cipher-Advanced.py
+## Features
 
-This version of the Caesar Cipher shifts every character in the input message by a user-defined key, which can be any number from 1 to 555000. This includes letters, numbers, spaces, and symbols.
+- Encrypts and decrypts messages using a shift key supplied by the user.
+- Wraps around the end of the alphabet in both directions.
+- Preserves letter case and leaves non-alphabetic characters untouched.
+- Re-prompts until the key is a whole number between 1 and 25.
 
-**Features:**
-- Encrypts and decrypts any printable characters.
-- Allows a very large range of shift values (up to 555000).
-- Ensures that the user inputs a valid numeric key within the specified range.
+## Example
 
-**Example Usage:**
+```
+Enter a message: My name is Neo.
+Enter a key (1-25): 12
+Encrypted message: Yk zmyq ue Zqa.
+Decrypted message: My name is Neo.
+```
 
-* Enter a message: My name is Neo.
-* Enter a key: 250
-* Encrypted message: ŇųĚŨśŧşĚţŭĚňşũĨ
-* Decrypted message: My name is Neo.
+## A note on security
 
-## General Information
+This cipher offers no real protection. There are only 25 possible keys, so any
+message can be broken by simply trying all of them and reading whichever result
+makes sense. Even without brute force, the cipher maps every occurrence of a
+given letter to the same output letter, so the frequency pattern of the original
+language survives encryption intact and gives the key away.
 
-Both versions of the Caesar Cipher are implemented in Python. They use the `ord()` and `chr()` functions to convert characters to their corresponding ASCII values and back. The basic version adjusts the ASCII values based on whether characters are uppercase or lowercase to maintain proper alphabetic shifts. The advanced version shifts all characters indiscriminately by the specified key value.
+Historically, the next development was to vary the shift as it moves through the
+message rather than holding it constant — the approach behind the Vigenère
+cipher, which uses a keyword to set a different shift for each position.
+
+This project is a learning exercise, not a security tool.
